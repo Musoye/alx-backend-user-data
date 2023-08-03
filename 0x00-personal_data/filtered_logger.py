@@ -56,3 +56,14 @@ def get_logger() -> logging.Logger:
     handler.setFormatter(fmt)
     logger.addHandler(handler)
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    '''get a database securely'''
+    user = getenv('PERSONAL_DATA_DB_USERNAME')
+    password = getenv('PERSONAL_DATA_DB_PASSWORD')
+    host = getenv('PERSONAL_DATA_DB_HOST')
+    db = getenv('PERSONAL_DATA_DB_NAME')
+    connect = mysql.connector.connect(user=user, password=password,
+                                      host=host, database=db)
+    return connect
