@@ -67,3 +67,22 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     connect = mysql.connector.connect(user=user, password=password,
                                       host=host, database=db)
     return connect
+
+
+def main():
+    '''
+    entry point of the program
+    '''
+    db = get_db()
+    logger = get_logger()
+    cs = db.cursor()
+    cs.execute("SELECT * FROM users;")
+    fd = cs.column_names
+    for r in cs:
+        msg = "".join("{}={}; ".format(k, v) for k, v in zip(fd, r))
+    cs.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
