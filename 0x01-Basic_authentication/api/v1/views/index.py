@@ -21,17 +21,19 @@ def stats() -> str:
       - the number of each objects
     """
     from models.user import User
+
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
+
 
 @app_views.route('/unauthorized', strict_slashes=False)
 def unauthorized() -> str:
     """for unauthorized"""
     abort(401)
 
+
 @app_views.route('/forbidden', strict_slashes=False)
 def forbid() -> str:
     """for forbidden"""
     abort(403)
-
