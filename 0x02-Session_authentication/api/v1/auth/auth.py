@@ -2,6 +2,7 @@
 """Aythentication method definition"""
 from flask import request
 from typing import TypeVar, List
+from os import getenv
 
 
 class Auth:
@@ -34,3 +35,10 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """The Crrent User"""
         return None
+
+    def session_cookie(self, request=None):
+        """Session Cookie"""
+        if not request:
+            return None
+        value = getenv('SESSION_NAME')
+        return request.cookies.get(value)
