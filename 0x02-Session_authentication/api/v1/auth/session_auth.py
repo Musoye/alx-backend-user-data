@@ -15,5 +15,5 @@ class SessionAuth(Auth):
         if type(user_id) != str:
             return None
         key = str(uuid4())
-        SessionAuth.user_id_by_session_id[key] = user_id
-        return user_id  
+        self.user_id_by_session_id[key] = user_id
+        return key 
