@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DB module
+"""DB module for the code
 """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -13,8 +13,7 @@ from user import User
 
 
 class DB:
-    """DB class
-    """
+    """DB class for db"""
 
     def __init__(self) -> None:
         """Initialize a new DB instance
@@ -43,7 +42,7 @@ class DB:
         return new_user
 
     def find_user_by(self, **kwargs):
-        """Find a user"""
+        """Find a user in user"""
         users = self._session.query(User)
         for k, v in kwargs.items():
             if k not in User.__dict__:
@@ -54,7 +53,7 @@ class DB:
         raise NoResultFound
 
     def update_user(self, user_id, **kwargs):
-        """Update a user"""
+        """Update a user in user"""
         user = self.find_user_by(id=user_id)
         for k, v in kwargs.items():
             if k not in User.__dict__:
